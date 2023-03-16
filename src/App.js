@@ -20,7 +20,7 @@ function App() {
   };
 
   const sendImage = () => {
-    const backendUrl = "http://localhost:7654/classify";
+    const backendUrl = "http://127.0.0.1:7654/classify";
     const uri = stageRef.current.toDataURL();
     const base64Image = uri.split(",")[1];
 
@@ -38,9 +38,9 @@ function App() {
       .catch((error) => {
         console.error(
           "There was a problem with the axios request:",
-          JSON.stringify(error.message)
+          error.message
         );
-        alert("Server is not running.");
+        alert(error.message);
       });
   };
 
@@ -72,7 +72,7 @@ function App() {
           border: "5px solid black",
           margin: "auto",
           backgroundColor: "white",
-          position: "absolute",
+          position: "fixed",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -90,7 +90,6 @@ function App() {
           display: "block",
           margin: "auto",
           position: "absolute",
-          // top: "50%",
           left: "50%",
           bottom: "10px",
           transform: "translate(-50%, 0)",
